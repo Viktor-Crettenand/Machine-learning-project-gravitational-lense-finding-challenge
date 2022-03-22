@@ -1,39 +1,37 @@
 # %% Global parameters
-
 import torch
-
 import os 
 dir_path = os.path.dirname(os.path.realpath(__file__))
 
 #Global variables (default values):
-transfer_learning=0
-init_batchnormv =1
-use_parallelization=0
-simple =0
-data_augmentation =0
+transfer_learning = 0
+init_batchnormv = 1
+use_parallelization = 0
+simple = 0
+data_augmentation = 0
 
-use_saved_model ='Model1'
-save_trained_model=0
+use_saved_model = 'Model1'
+save_trained_model = 0
 
-train_or_not =0
-epochs =20
+train_or_not = 0
+epochs = 20
 
 proportion_traindata = 0.8 # the proportion of the full dataset used for training
 printevery = 1000
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
 
-momentumv=0.90
-lrv=10**-2
+momentumv = 0.90
+lrv = 10**-2
 
-train_batch_size=8
+train_batch_size = 8
 
 import argparse
 parser = argparse.ArgumentParser()
 
 # the proportion of the full dataset used for training
 parser.add_argument("--ptd", type=int, default=proportion_traindata, 
-    help="the proportion of the full dataset used for training") 
+    help = "the proportion of the full dataset used for training") 
 # training dataloader batchsize
 parser.add_argument("--tbs", type=int, default=train_batch_size, help="training dataloader batchsize")
 # learning rate
@@ -66,16 +64,16 @@ parser.add_argument("--train", type=int, default=train_or_not,help= "whether or 
 # Global variables reassignment: 
 args = parser.parse_args()
 
-transfer_learning=args.transfer
-init_batchnormv =args.initbatch
-use_parallelization=args.parallelize
-simple =0
-data_augmentation =args.dataaugmentation
+transfer_learning = args.transfer
+init_batchnormv = args.initbatch
+use_parallelization = args.parallelize
+simple = 0
+data_augmentation = args.dataaugmentation
 
 use_saved_model = args.model
-save_trained_model=args.save
+save_trained_model = args.save
 
-train_or_not =args.train
+train_or_not = args.train
 epochs = args.epoch
 
 proportion_traindata = args.ptd # the proportion of the full dataset used for training
@@ -83,22 +81,22 @@ printevery = args.pevery
 device = args.device
 
 
-momentumv=args.mom
-lrv=args.lr
+momentumv = args.mom
+lrv = args.lr
 
-train_batch_size=args.tbs
+train_batch_size = args.tbs
 
 if use_saved_model == "Model2":
-    init_batchnormv =0
-    data_augmentation =0
-    use_parallelization =0
+    init_batchnormv = 0
+    data_augmentation = 0
+    use_parallelization = 0
 if use_saved_model == "Model1":
-    use_parallelization =1
+    use_parallelization = 1
 
 
 
 # PLEASE INSERT YOUR PATH HERE
-PathModel= args.root+'/'+use_saved_model +'.modeldict'
+PathModel = args.root+'/'+use_saved_model +'.modeldict'
 PathDataset = args.root +'/traintestsets.pckl'
 datapath = args.root+'/Data' 
 
